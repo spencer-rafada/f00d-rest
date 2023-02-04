@@ -3,9 +3,9 @@
   "info": {
     "title": "REST API about Food",
     "description": "This web service provides knowledge about different food all over the world.",
-    "host": "localhost:3030",
+    "host": "f00d-rest.onrender.com",
     "schemes": [
-      "http"
+      "https"
     ],
     "version": "1.0.0"
   },

@@ -4,8 +4,8 @@ const doc = {
   info: {
     title: `REST API about Food`,
     description: `This web service provides knowledge about different food all over the world.`,
-    host: `localhost:3030`,
-    schemes: [`http`]
+    host: `f00d-rest.onrender.com`,
+    schemes: [`https`]
   }
 };
 
