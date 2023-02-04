@@ -1,0 +1,15 @@
+// Local Host
+GET http://localhost:3030/food HTTP/1.1
+###
+POST http://localhost:3030/food HTTP/1.1
+Content-Type: application/json
+
+{
+  "recipeName": "Adobo",
+  "localName": "Adobo",
+  "origin": "Philippines",
+  "cookTime": 40,
+  "ingredients": ["chicken", "soy sauce", "vinegar"],
+  "recommendedVideos": ["https://www.youtube.com/watch?v=Ix5Dnud1bl0"],
+  "category": "savory"
+}
