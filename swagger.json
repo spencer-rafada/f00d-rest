@@ -3,17 +3,11 @@
   "info": {
     "title": "REST API about Food",
     "description": "This web service provides knowledge about different food all over the world.",
-    "host": "f00d-rest.onrender.com",
-    "schemes": [
-      "https"
-    ],
     "version": "1.0.0"
   },
-  "host": "localhost:3000",
+  "host": "f00d-rest.onrender.com",
   "basePath": "/",
-  "schemes": [
-    "http"
-  ],
+  "schemes": ["https"],
   "paths": {
     "/": {
       "get": {
@@ -36,9 +30,7 @@
     "/food/": {
       "get": {
         "description": "Gets all the food from the database.",
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "parameters": [],
         "responses": {
           "200": {
@@ -48,9 +40,7 @@
       },
       "post": {
         "description": "Add food to the database",
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "parameters": [
           {
             "name": "body",
@@ -96,9 +86,7 @@
     "/food/{id}": {
       "get": {
         "description": "Find food with the corresponding route params id",
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "parameters": [
           {
             "name": "id",
@@ -118,9 +106,7 @@
       },
       "put": {
         "description": "Update information of food in database.",
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "parameters": [
           {
             "name": "id",
