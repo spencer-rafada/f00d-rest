@@ -1,5 +1,5 @@
 import express, { Express, Request, Response, NextFunction } from 'express';
-import routes from './routes';
+import { routes } from './routes';
 const app: Express = express();
 
 // Middlewares
@@ -11,7 +11,7 @@ import config from './config/config';
 
 // Setting Middlewares
 app
-  .use(cors)
+  .use(cors())
   .use(bodyParser.json())
   .use(bodyParser.urlencoded({ extended: false }))
   .use((req: Request, res: Response, next: NextFunction) => {

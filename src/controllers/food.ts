@@ -1,9 +1,9 @@
-const { ObjectId } = require('mongodb');
-const mongodb = require(`../db/connect`);
-var ObjectID = require(`mongodb`).ObjectId;
+import { ObjectId } from 'mongodb';
+import mongodb from '../db/connect';
+import { NextFunction, Request, Response } from 'express';
 
 // GET all food
-const getAllFood = async (req, res, next) => {
+const getAllFood = async (req: Request, res: Response, next: NextFunction) => {
   // #swagger.description = `Gets all the food from the database.`
   const result = await mongodb.getDb().db(`f00d`).collection(`food`).find();
 
@@ -14,9 +14,9 @@ const getAllFood = async (req, res, next) => {
 };
 
 // GET single food
-const getFood = async (req, res, next) => {
+const getFood = async (req: Request, res: Response, next: NextFunction) => {
   // #swagger.description = `Find food with the corresponding route params id`
-  var o_id = new ObjectID(req.params.id);
+  var o_id = new ObjectId(req.params.id);
   const result = await mongodb.getDb().db(`f00d`).collection(`food`).find({ _id: o_id });
 
   (await result.count()) > 0
@@ -28,7 +28,7 @@ const getFood = async (req, res, next) => {
 };
 
 // POST food
-const addFood = async (req, res, next) => {
+const addFood = async (req: Request, res: Response, next: NextFunction) => {
   /* #swagger.description = `Add food to the database` */
   try {
     const food = {
@@ -53,7 +53,7 @@ const addFood = async (req, res, next) => {
 };
 
 // PUT food
-const updateFood = async (req, res, next) => {
+const updateFood = async (req: Request, res: Response, next: NextFunction) => {
   // #swagger.description = `Update information of food in database.`
   try {
     const food = {
@@ -65,7 +65,7 @@ const updateFood = async (req, res, next) => {
       recommendedVideos: req.body.recommendedVideos,
       category: req.body.category
     };
-    const o_id = new ObjectID(req.params.id);
+    const o_id = new ObjectId(req.params.id);
     const _ = await mongodb
       .getDb()
       .db(`f00d`)
@@ -83,7 +83,7 @@ const updateFood = async (req, res, next) => {
 };
 
 // DELETE food
-const deleteFood = async (req, res, next) => {
+const deleteFood = async (req: Request, res: Response, next: NextFunction) => {
   // #swagger.description = `Deletes food in the database.`
   try {
     const o_id = new ObjectId(req.params.id);
@@ -104,4 +104,4 @@ const deleteFood = async (req, res, next) => {
   }
 };
 
-module.exports = { getAllFood, getFood, addFood, updateFood, deleteFood };
+export default { getAllFood, getFood, addFood, updateFood, deleteFood };

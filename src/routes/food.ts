@@ -1,6 +1,7 @@
-const routes = require(`express`).Router();
+import { Router } from 'express';
 
-const foodController = require(`../controllers/food`);
+export const routes = Router();
+import foodController from '../controllers/food';
 
 // Food Routes
 routes.get(`/`, foodController.getAllFood);
@@ -12,5 +13,3 @@ routes.post(`/`, foodController.addFood);
 routes.put(`/:id`, foodController.updateFood);
 
 routes.delete(`/:id`, foodController.deleteFood);
-
-module.exports = routes;
