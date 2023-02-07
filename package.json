@@ -10,9 +10,10 @@
     "lint": "eslint .",
     "lint:fix": "eslint --fix",
     "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
-    "swagger-autogen": "node swagger.js",
+    "swagger-autogen": "node ./dist/swagger.js",
     "tsc": "tsc",
-    "postinstall": "npm run tsc"
+    "postinstall": "npm run tsc",
+    "build": "npm install && npm run postinstall && npm run swagger-autogen"
   },
   "repository": {
     "type": "git",
