@@ -1,4 +1,4 @@
-const { dbUrl } = require(`../config/config`);
+import config from '../config/config';
 const MongoClient = require(`mongodb`).MongoClient;
 let _db;
 
@@ -8,7 +8,7 @@ const initDb = (callback) => {
     console.log('Db is already initialized!');
     return callback(null, _db);
   }
-  MongoClient.connect(dbUrl)
+  MongoClient.connect(config.dbUrl)
     .then((client) => {
       _db = client;
       callback(null, _db);
@@ -25,4 +25,4 @@ const getDb = () => {
   }
   return _db;
 };
-module.exports = { initDb, getDb };
+export default { initDb, getDb };

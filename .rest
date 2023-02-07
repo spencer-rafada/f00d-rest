@@ -31,3 +31,36 @@ Content-Type: application/json
 ###
 DELETE http://localhost:3030/food/63de8ec5f6cc49e81f89da31 HTTP/1.1
 ###
+// Production
+GET https://f00d-rest.onrender.com/food HTTP/1.1
+###
+GET https://f00d-rest.onrender.com/food/63de93b808b8820735531344 HTTP/1.1
+###
+POST https://f00d-rest.onrender.com/food HTTP/1.1
+Content-Type: application/json
+
+{
+  "recipeName": "Sour soup",
+  "localName": "Sinigang",
+  "origin": "Philippines",
+  "cookTime": 120,
+  "ingredients": ["pork", "eggplant", "sinigang mix", "tomato"],
+  "recommendedVideos": ["https://www.youtube.com/watch?v=t-beBtUZz3E"],
+  "category": "soup"
+}
+###
+PUT https://f00d-rest.onrender.com/food/63de93b808b8820735531344 HTTP/1.1
+Content-Type: application/json
+
+{
+  "recipeName": "Sour soup",
+  "localName": "Sinigang na Baboy",
+  "origin": "Philippines",
+  "cookTime": 120,
+  "ingredients": ["pork", "eggplant", "sinigang mix", "tomato"],
+  "recommendedVideos": ["https://www.youtube.com/watch?v=t-beBtUZz3E"],
+  "category": "soup"
+}
+###
+DELETE https://f00d-rest.onrender.com/food/63de93b808b8820735531344 HTTP/1.1
+###
