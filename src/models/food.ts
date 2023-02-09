@@ -1,6 +1,6 @@
-import { Schema } from 'mongoose';
+import { Schema, Document } from 'mongoose';
 
-interface Food {
+interface Food extends Document {
   foodName: string;
   localName?: string;
   origin: string;
@@ -10,7 +10,7 @@ interface Food {
   category?: string;
 }
 
-export default (mongoose) => {
+export default (mongoose: object) => {
   const foodSchema = new Schema<Food>({
     foodName: { type: String, required: true },
     localName: { type: String },

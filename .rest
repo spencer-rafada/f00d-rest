@@ -11,22 +11,22 @@ Content-Type: application/json
   "cookTime": 40,
   "ingredients": ["chicken", "soy sauce", "vinegar"],
   "recommendedVideos": ["https://www.youtube.com/watch?v=Ix5Dnud1bl0"],
-  "category": "savory"
+  "category": "filipino"
 }
 ###
-GET http://localhost:3030/food/63e49f9f06ee9a79d3ee85b3 HTTP/1.1
+GET http://localhost:3030/food/63e50c9458e340586d00de62 HTTP/1.1
 ###
-PUT http://localhost:3030/food/63e49f9f06ee9a79d3ee85b3 HTTP/1.1
+PUT http://localhost:3030/food/63e50c9458e340586d00de62 HTTP/1.1
 Content-Type: application/json
 
 {
-  "foodName": "Sinigang",
+  "foodName": "",
   "localName": "Adobo",
   "origin": "Philippines",
   "cookTime": 40,
   "ingredients": ["chicken", "soy sauce", "vinegar"],
   "recommendedVideos": ["https://www.youtube.com/watch?v=Ix5Dnud1bl0"],
-  "category": "savory"
+  "category": "filipino"
 }
 ###
 DELETE http://localhost:3030/food/63e49f9f06ee9a79d3ee85b3 HTTP/1.1
