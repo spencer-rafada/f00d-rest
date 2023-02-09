@@ -6,9 +6,6 @@ const app: Express = express();
 import cors from 'cors';
 import bodyParser from 'body-parser';
 
-import mongodb from './db/connect';
-import config from './config/config';
-
 // Setting Middlewares
 app
   .use(cors())
@@ -21,11 +18,15 @@ app
 
 app.use(`/`, routes);
 
-mongodb.initDb((err) => {
-  if (err) {
-    console.log(err);
-  } else {
-    app.listen(config.port);
-    console.log(`Server is running on port ${config.port}`);
-  }
-});
+import db from './models/index';
+db.mongoose
+  .connect(db.url)
+  .then(() => {
+    app.listen(db.port, () => {
+      console.log(`DB Connected and Server is running on Port ${db.port}`);
+    });
+  })
+  .catch((err) => {
+    console.log(`Cannot connect to the database`, err);
+    process.exit();
+  });

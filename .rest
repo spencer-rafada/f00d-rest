@@ -5,7 +5,7 @@ POST http://localhost:3030/food HTTP/1.1
 Content-Type: application/json
 
 {
-  "recipeName": "Adobo",
+  "foodName": "Adobo",
   "localName": "Adobo",
   "origin": "Philippines",
   "cookTime": 40,
@@ -14,13 +14,13 @@ Content-Type: application/json
   "category": "savory"
 }
 ###
-GET http://localhost:3030/food/63de8ec5f6cc49e81f89da31 HTTP/1.1
+GET http://localhost:3030/food/63e49f9f06ee9a79d3ee85b3 HTTP/1.1
 ###
-PUT http://localhost:3030/food/63de8ec5f6cc49e81f89da31 HTTP/1.1
+PUT http://localhost:3030/food/63e49f9f06ee9a79d3ee85b3 HTTP/1.1
 Content-Type: application/json
 
 {
-  "recipeName": "Sinigang",
+  "foodName": "Sinigang",
   "localName": "Adobo",
   "origin": "Philippines",
   "cookTime": 40,
@@ -29,7 +29,7 @@ Content-Type: application/json
   "category": "savory"
 }
 ###
-DELETE http://localhost:3030/food/63de8ec5f6cc49e81f89da31 HTTP/1.1
+DELETE http://localhost:3030/food/63e49f9f06ee9a79d3ee85b3 HTTP/1.1
 ###
 // Production
 GET https://f00d-rest.onrender.com/food HTTP/1.1
@@ -40,7 +40,7 @@ POST https://f00d-rest.onrender.com/food HTTP/1.1
 Content-Type: application/json
 
 {
-  "recipeName": "Sour soup",
+  "foodName": "Sour soup",
   "localName": "Sinigang",
   "origin": "Philippines",
   "cookTime": 120,
@@ -53,7 +53,7 @@ PUT https://f00d-rest.onrender.com/food/63de93b808b8820735531344 HTTP/1.1
 Content-Type: application/json
 
 {
-  "recipeName": "Sour soup",
+  "foodName": "Sour soup",
   "localName": "Sinigang na Baboy",
   "origin": "Philippines",
   "cookTime": 120,

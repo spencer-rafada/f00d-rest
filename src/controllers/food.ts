@@ -1,54 +1,49 @@
-import { ObjectId } from 'mongodb';
-import mongodb from '../db/connect';
+import db from '../models/index';
 import { NextFunction, Request, Response } from 'express';
+const Food = db.food;
 
 // GET all food
 const getAllFood = async (req: Request, res: Response, next: NextFunction) => {
   // #swagger.description = `Gets all the food from the database.`
-  const result = await mongodb.getDb().db(`f00d`).collection(`food`).find();
-
-  result.toArray().then((foods) => {
-    res.setHeader(`Content-Type`, `application/json`);
-    res.status(200).json(foods);
+  await Food.find({}).then((data) => {
+    if (!data) res.status(404).send({ message: `Food not found.` });
+    else res.status(200).send(data);
   });
 };
 
 // GET single food
 const getFood = async (req: Request, res: Response, next: NextFunction) => {
   // #swagger.description = `Find food with the corresponding route params id`
-  var o_id = new ObjectId(req.params.id);
-  const result = await mongodb.getDb().db(`f00d`).collection(`food`).find({ _id: o_id });
-
-  (await result.count()) > 0
-    ? result.toArray().then((food) => {
-        res.setHeader(`Content-Type`, `application/json`);
-        res.status(200).json(food);
-      })
-    : res.status(404).json({ message: `No document found` });
+  await Food.findOne({ _id: req.params.id }).then((data) => {
+    if (!data) res.status(404).send({ message: `Food not found.` });
+    else res.status(200).send(data);
+  });
 };
 
 // POST food
 const addFood = async (req: Request, res: Response, next: NextFunction) => {
   /* #swagger.description = `Add food to the database` */
   try {
-    const food = {
-      recipeName: req.body.recipeName,
+    const newFood = new Food({
+      foodName: req.body.foodName,
       localName: req.body.localName,
       origin: req.body.origin,
       cookTime: req.body.cookTime,
       ingredients: req.body.ingredients,
       recommendedVideos: req.body.recommendedVideos,
       category: req.body.category
-    };
-    const result = await mongodb.getDb().db(`f00d`).collection(`food`).insertOne(food);
-    res.setHeader(`Content-Type`, `application/json`);
-    result
-      ? res.status(201).json({
-          message: `Document has been added successfully with document id: ${result.insertedId.toString()}`
-        })
-      : res.status(404).json({ message: `Document not added` });
-  } catch (error) {
-    console.log(error);
+    });
+
+    const result = await newFood.save();
+    if (result === newFood) {
+      res
+        .status(200)
+        .send({ message: `Food with name: ${newFood.foodName} added with ID: ${result.id}` });
+    } else {
+      res.status(404).send({ message: `Food not added` });
+    }
+  } catch (err) {
+    console.log(err);
   }
 };
 
@@ -56,8 +51,8 @@ const addFood = async (req: Request, res: Response, next: NextFunction) => {
 const updateFood = async (req: Request, res: Response, next: NextFunction) => {
   // #swagger.description = `Update information of food in database.`
   try {
-    const food = {
-      recipeName: req.body.recipeName,
+    const newFoodInfo = {
+      foodName: req.body.foodName,
       localName: req.body.localName,
       origin: req.body.origin,
       cookTime: req.body.cookTime,
@@ -65,18 +60,10 @@ const updateFood = async (req: Request, res: Response, next: NextFunction) => {
       recommendedVideos: req.body.recommendedVideos,
       category: req.body.category
     };
-    const o_id = new ObjectId(req.params.id);
-    const _ = await mongodb
-      .getDb()
-      .db(`f00d`)
-      .collection(`food`)
-      .updateOne({ _id: o_id }, { $set: food })
-      .then((result) => {
-        res.setHeader(`Content-Type`, `application/json`);
-        result.modifiedCount > 0
-          ? res.status(204).json({ message: `Food has been updated.` })
-          : res.status(404).json({ message: `No document updated.` });
-      });
+    const filter = { _id: req.params.id };
+    const result = await Food.updateOne(filter, newFoodInfo);
+    if (result.modifiedCount > 0) res.status(204);
+    else res.status(404).send({ message: `No food modified.` });
   } catch (err) {
     console.log(err);
   }
@@ -86,19 +73,9 @@ const updateFood = async (req: Request, res: Response, next: NextFunction) => {
 const deleteFood = async (req: Request, res: Response, next: NextFunction) => {
   // #swagger.description = `Deletes food in the database.`
   try {
-    const o_id = new ObjectId(req.params.id);
-    const _ = await mongodb
-      .getDb()
-      .db(`f00d`)
-      .collection(`food`)
-      .deleteOne({ _id: o_id }, {})
-      .then((result) => {
-        result.deletedCount > 0
-          ? res
-              .status(200)
-              .json({ mesage: `Document with ID: ${req.params.id} successfully deleted` })
-          : res.status(404).json({ message: `No document deleted.` });
-      });
+    const result = await Food.deleteOne({ _id: req.params.id });
+    if (result.deletedCount === 0) res.status(404).send({ message: `No food deleted.` });
+    else res.status(200).send({ message: `Food with ID ${req.params.id} has been deleted.` });
   } catch (err) {
     console.log(err);
   }
