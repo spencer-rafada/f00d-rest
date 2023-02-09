@@ -5,7 +5,7 @@ POST http://localhost:3030/food HTTP/1.1
 Content-Type: application/json
 
 {
-  "foodName": "Adobo",
+  "foodName": "",
   "localName": "Adobo",
   "origin": "Philippines",
   "cookTime": 40,

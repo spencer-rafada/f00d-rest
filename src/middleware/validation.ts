@@ -1,4 +1,4 @@
-import { check } from 'express-validator';
+import { check, validationResult } from 'express-validator';
 import mongoose from 'mongoose';
 const ObjectId = mongoose.Types.ObjectId;
 
@@ -29,4 +29,11 @@ const validateObjectId = (id: string): boolean => {
   return false;
 };
 
-export default { foodValidation, validateObjectId, updateFoodValidation };
+// Receive all of the errors
+const checkErrors = (req) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) return errors.array();
+  else return null;
+};
+
+export default { foodValidation, validateObjectId, updateFoodValidation, checkErrors };

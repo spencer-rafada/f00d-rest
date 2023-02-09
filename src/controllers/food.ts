@@ -1,6 +1,5 @@
 import db from '../models/index';
 import { NextFunction, Request, Response } from 'express';
-import { validationResult } from 'express-validator';
 import validation from '../middleware/validation';
 const Food = db.food;
 
@@ -31,8 +30,8 @@ const getFood = async (req: Request, res: Response, next: NextFunction) => {
 const addFood = async (req: Request, res: Response, next: NextFunction) => {
   /* #swagger.description = `Add food to the database` */
   // Check if there are errors
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) return res.status(400).send({ errors: errors.array() });
+  const errors = validation.checkErrors(req);
+  if (errors) return res.status(400).send({ errors });
 
   const newFood = new Food({
     foodName: req.body.foodName,
@@ -58,8 +57,8 @@ const addFood = async (req: Request, res: Response, next: NextFunction) => {
 const updateFood = async (req: Request, res: Response, next: NextFunction) => {
   // #swagger.description = `Update information of food in database.`
   // Check if there are no errors
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) return res.status(404).send({ errors: errors.array() });
+  const errors = validation.checkErrors(req);
+  if (errors) return res.status(400).send({ errors });
 
   // Check if ID is valid
   if (!validation.validateObjectId(req.params.id)) {
