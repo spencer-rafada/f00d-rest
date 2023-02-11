@@ -1,11 +1,11 @@
-// Local Host
+// Local Host - No Errors
 GET http://localhost:3030/food HTTP/1.1
 ###
 POST http://localhost:3030/food HTTP/1.1
 Content-Type: application/json
 
 {
-  "foodName": "",
+  "foodName": "Adobo",
   "localName": "Adobo",
   "origin": "Philippines",
   "cookTime": 40,
@@ -14,7 +14,7 @@ Content-Type: application/json
   "category": "filipino"
 }
 ###
-GET http://localhost:3030/food/63e50c9458e340586d00de62 HTTP/1.1
+GET http://localhost:3030/food/63e4a347f780c34ea8997591 HTTP/1.1
 ###
 PUT http://localhost:3030/food/63e50c9458e340586d00de62 HTTP/1.1
 Content-Type: application/json
@@ -29,8 +29,45 @@ Content-Type: application/json
   "category": "filipino"
 }
 ###
-DELETE http://localhost:3030/food/63e49f9f06ee9a79d3ee85b3 HTTP/1.1
+DELETE http://localhost:3030/food/63e50c9458e340586d00de62 HTTP/1.1
 ###
+// Local Host - Errors
+###
+GET http://localhost:3030/food/63e50c9458e340586d00de62 HTTP/1.1
+###
+POST http://localhost:3030/food/ HTTP/1.1
+Content-Type: application/json
+
+{
+  "foodName": "",
+  "localName": "Adobo",
+  "origin": "Philippines",
+  "cookTime": 40,
+  "ingredients": ["chicken", "soy sauce", "vinegar"],
+  "recommendedVideos": ["https://www.youtube.com/watch?v=Ix5Dnud1bl0"],
+  "category": "filipino"
+}
+###
+PUT http://localhost:3030/food/63e50c9458e340586d00de62 HTTP/1.1
+Content-Type: application/json
+
+{
+  "foodName": "",
+  "localName": "Adobo",
+  "origin": "Philippines",
+  "cookTime": 40,
+  "ingredients": ["chicken", "soy sauce", "vinegar"],
+  "recommendedVideos": ["https://www.youtube.com/watch?v=Ix5Dnud1bl0"],
+  "category": "asian"
+}
+###
+DELETE http://localhost:3030/food/63e50c9458e340586d00de62 HTTP/1.1
+###
+
+
+
+
+
 // Production
 GET https://f00d-rest.onrender.com/food HTTP/1.1
 ###

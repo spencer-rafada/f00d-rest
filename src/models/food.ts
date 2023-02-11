@@ -10,7 +10,7 @@ interface Food extends Document {
   category?: string;
 }
 
-export default (mongoose: object) => {
+export default (mongoose) => {
   const foodSchema = new Schema<Food>({
     foodName: { type: String, required: true },
     localName: { type: String },

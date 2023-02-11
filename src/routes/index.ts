@@ -7,7 +7,7 @@ export const routes = Router();
 
 routes.get(`/`, (req: Request, res: Response, next) => {
   // #swagger.description = `Root endpoint`
-  res.json(`hello`);
+  res.json(`Hello Food Lover!`);
 });
 
 routes.use(`/food`, foodRoutes);
