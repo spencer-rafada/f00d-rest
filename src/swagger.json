@@ -1,230 +1,183 @@
-{
-  "swagger": "2.0",
-  "info": {
-    "title": "TypeScript REST API about Food",
-    "version": "1.1.0",
-    "description": "The Food API allows you to access food information from different parts of the world.\n### Some awesome features:\n* Add food from your own country\n* Access food from different part of the country\n* Videos for making these food\n",
-    "contact": {
-      "email": "neilspencerrafada@gmail.com"
-    }
-  },
-  "host": "f00d-rest.onrender.com",
-  "basePath": "/",
-  "schemes": ["https", "http"],
-  "tags": [
-    {
-      "name": "Information",
-      "description": "Information about Food API"
-    },
-    {
-      "name": "Food",
-      "description": "Everything about Food!"
-    },
-    {
-      "name": "Users",
-      "description": "Everyone who can access Food!"
-    }
-  ],
-  "paths": {
-    "/": {
-      "get": {
-        "tags": ["Information"],
-        "summary": "Root Route",
-        "description": "Appetizer of the Food API Project.",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api-docs": {
-      "get": {
-        "tags": ["Information"],
-        "summary": "SwaggerUI 2.0 Documentation",
-        "description": "Documentation of the Food API Project",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/food/": {
-      "get": {
-        "tags": ["Food"],
-        "summary": "Get all existing Food",
-        "description": "Gets all information from all of the food stored in the database.",
-        "operationId": "getAllFood",
-        "produces": ["application/json"],
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "Successful operation"
-          },
-          "404": {
-            "description": "Food not found."
-          }
-        }
-      },
-      "post": {
-        "tags": ["Food"],
-        "summary": "Add your food to the database",
-        "description": "Add food to the database",
-        "operationId": "addFood",
-        "produces": ["application/json"],
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "description": "Food object that needs to be added to the database",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/Food"
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Food has been added"
-          },
-          "400": {
-            "description": "Food data is invalid"
-          },
-          "404": {
-            "description": "Food not added"
-          }
-        }
-      }
-    },
-    "/food/{id}": {
-      "get": {
-        "tags": ["Food"],
-        "summary": "Find Food by ID",
-        "description": "Find food by route params id",
-        "operationId": "getFood",
-        "produces": ["application/json"],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Food Found"
-          },
-          "400": {
-            "description": "Invalid Food ID"
-          },
-          "404": {
-            "description": "Food Not Found"
-          }
-        }
-      },
-      "put": {
-        "tags": ["Food"],
-        "summary": "Update Food by ID",
-        "description": "Update information of food in database.",
-        "operationId": "updateFood",
-        "produces": ["application/json"],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "description": "Parameters ID"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "description": "Food object that updates the food to the database",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/Food"
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "Food updated"
-          },
-          "400": {
-            "description": "Invalid Food ID"
-          },
-          "404": {
-            "description": "No Food Updated"
-          }
-        }
-      },
-      "delete": {
-        "tags": ["Food"],
-        "summary": "Delete a food",
-        "description": "Deletes food in the database.",
-        "operationId": "deleteFood",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Food deleted"
-          },
-          "400": {
-            "description": "Invalid FoodID"
-          },
-          "404": {
-            "description": "No Food Deleted"
-          }
-        }
-      }
-    }
-  },
-  "definitions": {
-    "Food": {
-      "type": "object",
-      "properties": {
-        "foodName": {
-          "type": "string",
-          "description": "Food Name"
-        },
-        "localName": {
-          "type": "string",
-          "description": "Local Food Name"
-        },
-        "origin": {
-          "type": "string",
-          "description": "Origin of the Food (Country)"
-        },
-        "ingredients": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "description": "Array of Ingredients"
-        },
-        "recommendedVideos": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "description": "Videos of making this food"
-        },
-        "category": {
-          "type": "string",
-          "description": "Categories of Food",
-          "enum": ["Filipino", "American", "Mexican", "African", "Chinese"]
-        }
-      }
-    }
-  }
-}
+swagger: '2.0'
+info:
+  title: TypeScript REST API about Food
+  version: 1.1.0
+  description: |
+    The Food API allows you to access food information from different parts of the world.
+    ### Some awesome features:
+    * Add food from your own country
+    * Access food from different part of the country
+    * Videos for making these food
+  contact:
+    email: neilspencerrafada@gmail.com
+host: f00d-rest.onrender.com
+basePath: /
+schemes:
+  - https
+  - http
+tags:
+  - name: Information
+    description: Information about Food API
+  - name: Food
+    description: Everything about Food!
+  - name: Users
+    description: Everyone who can access Food!
+paths:
+  /:
+    get:
+      tags:
+        - Information
+      summary: Root Route
+      description: Appetizer of the Food API Project.
+      parameters: []
+      responses:
+        '200':
+          description: OK
+  /api-docs:
+    get:
+      tags:
+        - Information
+      summary: SwaggerUI 2.0 Documentation
+      description: Documentation of the Food API Project
+      parameters: []
+      responses:
+        '200':
+          description: OK
+  /food/:
+    get:
+      tags:
+        - Food
+      summary: Get all existing Food
+      description: Gets all information from all of the food stored in the database.
+      operationId: getAllFood
+      produces:
+        - application/json
+      parameters: []
+      responses:
+        '200':
+          description: Successful operation
+        '404':
+          description: Food not found.
+    post:
+      tags:
+        - Food
+      summary: Add your food to the database
+      description: Add food to the database
+      operationId: addFood
+      produces:
+        - application/json
+      parameters:
+        - name: body
+          in: body
+          description: Food object that needs to be added to the database
+          required: true
+          schema:
+            $ref: '#/definitions/Food'
+      responses:
+        '201':
+          description: Food has been added
+        '400':
+          description: Food data is invalid
+        '404':
+          description: Food not added
+  /food/{id}:
+    get:
+      tags:
+        - Food
+      summary: Find Food by ID
+      description: Find food by route params id
+      operationId: getFood
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Food Found
+        '400':
+          description: Invalid Food ID
+        '404':
+          description: Food Not Found
+    put:
+      tags:
+        - Food
+      summary: Update Food by ID
+      description: Update information of food in database.
+      operationId: updateFood
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: Parameters ID
+        - name: body
+          in: body
+          description: Food object that updates the food to the database
+          required: true
+          schema:
+            $ref: '#/definitions/Food'
+      responses:
+        '204':
+          description: Food updated
+        '400':
+          description: Invalid Food ID
+        '404':
+          description: No Food Updated
+    delete:
+      tags:
+        - Food
+      summary: Delete a food
+      description: Deletes food in the database.
+      operationId: deleteFood
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Food deleted
+        '400':
+          description: Invalid FoodID
+        '404':
+          description: No Food Deleted
+definitions:
+  Food:
+    type: object
+    properties:
+      foodName:
+        type: string
+        description: Food Name
+      localName:
+        type: string
+        description: Local Food Name
+      origin:
+        type: string
+        description: Origin of the Food (Country)
+      cookTime:
+        type: integer
+        description: Cook Time of Food
+      ingredients:
+        type: array
+        items:
+          type: string
+        description: Array of Ingredients
+      recommendedVideos:
+        type: array
+        items:
+          type: string
+        description: Videos of making this food
+      category:
+        type: string
+        description: Categories of Food
+        enum:
+          - Filipino
+          - American
+          - Mexican
+          - African
+          - Chinese
