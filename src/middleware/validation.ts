@@ -8,7 +8,7 @@ const foodValidation = [
   check('foodName', 'Food Name is required.').not().isEmpty(),
   check('origin', 'Food origin is required.').not().isEmpty(),
   check(`cookTime`, `Cook Time cannot be less than 0`).notEmpty().isInt({ min: 0, max: 1440 }),
-  check(`category`, `Category is not defined.`).isIn(foodCategory)
+  check(`category`, `Category is not defined.`).toLowerCase().isIn(foodCategory)
 ];
 
 const updateFoodValidation = [

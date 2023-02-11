@@ -11,16 +11,16 @@ Content-Type: application/json
   "cookTime": 40,
   "ingredients": ["chicken", "soy sauce", "vinegar"],
   "recommendedVideos": ["https://www.youtube.com/watch?v=Ix5Dnud1bl0"],
-  "category": "filipino"
+  "category": "Filipino"
 }
 ###
-GET http://localhost:3030/food/63e4a347f780c34ea8997591 HTTP/1.1
+GET http://localhost:3030/food/63e8119ef3480bb4e6375f6f HTTP/1.1
 ###
-PUT http://localhost:3030/food/63e50c9458e340586d00de62 HTTP/1.1
+PUT http://localhost:3030/food/63e8119ef3480bb4e6375f6f HTTP/1.1
 Content-Type: application/json
 
 {
-  "foodName": "",
+  "foodName": "Sinigang",
   "localName": "Adobo",
   "origin": "Philippines",
   "cookTime": 40,
@@ -29,7 +29,7 @@ Content-Type: application/json
   "category": "filipino"
 }
 ###
-DELETE http://localhost:3030/food/63e50c9458e340586d00de62 HTTP/1.1
+DELETE http://localhost:3030/food/63e8119ef3480bb4e6375f6f HTTP/1.1
 ###
 // Local Host - Errors
 ###
@@ -64,40 +64,68 @@ Content-Type: application/json
 DELETE http://localhost:3030/food/63e50c9458e340586d00de62 HTTP/1.1
 ###
 
-
-
-
-
-// Production
-GET https://f00d-rest.onrender.com/food HTTP/1.1
+// Production - No Errors
+GET https://f00d-rest.onrender.com/food/ HTTP/1.1
 ###
-GET https://f00d-rest.onrender.com/food/63de93b808b8820735531344 HTTP/1.1
-###
-POST https://f00d-rest.onrender.com/food HTTP/1.1
+POST https://f00d-rest.onrender.com/food/ HTTP/1.1
 Content-Type: application/json
 
 {
-  "foodName": "Sour soup",
-  "localName": "Sinigang",
+  "foodName": "Adobo",
+  "localName": "Adobo",
   "origin": "Philippines",
-  "cookTime": 120,
-  "ingredients": ["pork", "eggplant", "sinigang mix", "tomato"],
-  "recommendedVideos": ["https://www.youtube.com/watch?v=t-beBtUZz3E"],
-  "category": "soup"
+  "cookTime": 40,
+  "ingredients": ["chicken", "soy sauce", "vinegar"],
+  "recommendedVideos": ["https://www.youtube.com/watch?v=Ix5Dnud1bl0"],
+  "category": "filipino"
 }
 ###
-PUT https://f00d-rest.onrender.com/food/63de93b808b8820735531344 HTTP/1.1
+GET https://f00d-rest.onrender.com/food/63e4347f780c34ea8997591 HTTP/1.1
+###
+PUT https://f00d-rest.onrender.com/food/63e81161d4362b1650c5ae8 HTTP/1.1
 Content-Type: application/json
 
 {
-  "foodName": "Sour soup",
-  "localName": "Sinigang na Baboy",
+  "foodName": "Sinigang",
+  "localName": "Adobo",
   "origin": "Philippines",
-  "cookTime": 120,
-  "ingredients": ["pork", "eggplant", "sinigang mix", "tomato"],
-  "recommendedVideos": ["https://www.youtube.com/watch?v=t-beBtUZz3E"],
-  "category": "soup"
+  "cookTime": 40,
+  "ingredients": ["chicken", "soy sauce", "vinegar"],
+  "recommendedVideos": ["https://www.youtube.com/watch?v=Ix5Dnud1bl0"],
+  "category": "filipino"
 }
 ###
-DELETE https://f00d-rest.onrender.com/food/63de93b808b8820735531344 HTTP/1.1
+DELETE https://f00d-rest.onrender.com/food/63e0c9458e340586d00de62 HTTP/1.1
+###
+// Production - Errors
+###
+GET https://f00d-rest.onrender.com/food/63e50c9458e340586d00de62 HTTP/1.1
+###
+POST https://f00d-rest.onrender.com/food/ HTTP/1.1
+Content-Type: application/json
+
+{
+  "foodName": "",
+  "localName": "Adobo",
+  "origin": "Philippines",
+  "cookTime": 40,
+  "ingredients": ["chicken", "soy sauce", "vinegar"],
+  "recommendedVideos": ["https://www.youtube.com/watch?v=Ix5Dnud1bl0"],
+  "category": "filipino"
+}
+###
+PUT https://f00d-rest.onrender.com/food/63e50c9458e340586d00de62 HTTP/1.1
+Content-Type: application/json
+
+{
+  "foodName": "",
+  "localName": "Adobo",
+  "origin": "Philippines",
+  "cookTime": 40,
+  "ingredients": ["chicken", "soy sauce", "vinegar"],
+  "recommendedVideos": ["https://www.youtube.com/watch?v=Ix5Dnud1bl0"],
+  "category": "asian"
+}
+###
+DELETE https://f00d-rest.onrender.com/food/63e50c9458e340586d00de62 HTTP/1.1
 ###
