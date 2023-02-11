@@ -99,7 +99,7 @@ const updateFood = async (req: Request, res: Response, next: NextFunction) => {
     const filter = { _id: req.params.id };
     const result = await Food.updateOne(filter, newFoodInfo);
     if (result.modifiedCount === 0) res.status(404).send({ message: `No food modified.` });
-    else res.status(200).send({ message: `Food with ID ${req.params.id} has been modified.` });
+    else res.status(204);
   } catch (err) {
     console.log(err);
   }
