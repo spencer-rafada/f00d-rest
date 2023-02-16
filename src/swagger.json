@@ -74,21 +74,6 @@
         }
       }
     },
-    "/login": {
-      "get": {
-        "tags": [
-          "Information"
-        ],
-        "summary": "Authorize user",
-        "description": "Login to Auth0",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "Authorized"
-          }
-        }
-      }
-    },
     "/logout": {
       "get": {
         "tags": [
