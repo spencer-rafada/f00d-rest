@@ -6,20 +6,6 @@ const Food = db.food;
 
 // GET all food
 const getAllFood = async (req: Request, res: Response, next: NextFunction) => {
-  // #swagger.description = `Gets all the food from the database.`
-  /* #swagger.responses[200] = {
-        description: `Food successfully retrieved`,
-        schema: {
-          "foodName": "Adobo",
-          "localName": "Adobo",
-          "origin": "Philippines",
-          "cookTime": 40,
-          "ingredients": ["chicken", "soy sauce", "vinegar"],
-          "recommendedVideos": ["https://www.youtube.com/watch?v=Ix5Dnud1bl0"],
-          "category": "filipino"
-        }
-  }
-  */
   await Food.find({}).then((data) => {
     if (data.length === 0) res.status(404).send({ message: `No Food.` });
     else res.status(200).send(data);
@@ -28,8 +14,6 @@ const getAllFood = async (req: Request, res: Response, next: NextFunction) => {
 
 // GET single food
 const getFood = async (req: Request, res: Response, next: NextFunction) => {
-  // #swagger.description = `Find food with the corresponding route params id`
-  // Check if ID is valid
   try {
     if (!validation.validateObjectId(req.params.id)) {
       return res.status(400).send({ errors: `Must use a valid food id to get food` });
@@ -45,8 +29,6 @@ const getFood = async (req: Request, res: Response, next: NextFunction) => {
 
 // POST food
 const addFood = async (req: Request, res: Response, next: NextFunction) => {
-  /* #swagger.description = `Add food to the database` */
-  // Check if there are errors
   try {
     const errors = validation.checkErrors(req);
     if (errors) return res.status(400).send({ errors });
@@ -76,8 +58,6 @@ const addFood = async (req: Request, res: Response, next: NextFunction) => {
 
 // PUT food
 const updateFood = async (req: Request, res: Response, next: NextFunction) => {
-  // #swagger.description = `Update information of food in database.`
-  // Check if there are no errors
   try {
     const errors = validation.checkErrors(req);
     if (errors) return res.status(400).send({ errors });
@@ -107,7 +87,6 @@ const updateFood = async (req: Request, res: Response, next: NextFunction) => {
 
 // DELETE food
 const deleteFood = async (req: Request, res: Response, next: NextFunction) => {
-  // #swagger.description = `Deletes food in the database.`
   try {
     if (!validation.validateObjectId(req.params.id)) {
       return res.status(400).send({ message: `Must use valid food id to delete food` });

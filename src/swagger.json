@@ -8,7 +8,7 @@
       "email": "neilspencerrafada@gmail.com"
     }
   },
-  "host": "f00d-rest.onrender.com",
+  "host": "localhost:3030",
   "basePath": "/",
   "schemes": [
     "https",
@@ -44,6 +44,21 @@
         }
       }
     },
+    "/profile": {
+      "get": {
+        "tags": [
+          "Information"
+        ],
+        "summary": "Get user profile information",
+        "description": "Get user profile information",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "User profile retrieved"
+          }
+        }
+      }
+    },
     "/api-docs": {
       "get": {
         "tags": [
@@ -55,6 +70,36 @@
         "responses": {
           "200": {
             "description": "OK"
+          }
+        }
+      }
+    },
+    "/login": {
+      "get": {
+        "tags": [
+          "Information"
+        ],
+        "summary": "Authorize user",
+        "description": "Login to Auth0",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Authorized"
+          }
+        }
+      }
+    },
+    "/logout": {
+      "get": {
+        "tags": [
+          "Information"
+        ],
+        "summary": "Logout of Auth0",
+        "description": "Logout of Auth0",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Logged out"
           }
         }
       }
@@ -102,6 +147,9 @@
           }
         ],
         "responses": {
+          "200": {
+            "description": "Worked"
+          },
           "201": {
             "description": "Food has been added"
           },
@@ -109,9 +157,19 @@
             "description": "Food data is invalid"
           },
           "404": {
-            "description": "Food not added"
+            "description": "Food not found"
           }
-        }
+        },
+        "security": [
+          {
+            "auth0": [
+              "openid",
+              "20profile",
+              "20email",
+              "20read:appointments"
+            ]
+          }
+        ]
       }
     },
     "/food/{id}": {
@@ -183,7 +241,17 @@
           "404": {
             "description": "No Food Updated"
           }
-        }
+        },
+        "security": [
+          {
+            "auth0": [
+              "openid",
+              "20profile",
+              "20email",
+              "20read:appointments"
+            ]
+          }
+        ]
       },
       "delete": {
         "tags": [
@@ -210,7 +278,30 @@
           "404": {
             "description": "No Food Deleted"
           }
-        }
+        },
+        "security": [
+          {
+            "auth0": [
+              "openid",
+              "20profile",
+              "20email",
+              "20read:appointments"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "securityDefinitions": {
+    "auth0": {
+      "type": "oauth2",
+      "authorizationUrl": "http://localhost:3030/login",
+      "flow": "authorizationCode",
+      "scopes": {
+        "openid": "to indicate that the application intends to use OIDC to verify the user's identity.",
+        "20profile": "to get name, nickname, and picture.",
+        "20email": "to get email and email_verified.",
+        "20read:appointments": "to allow us to read the user's appointments from the API."
       }
     }
   },

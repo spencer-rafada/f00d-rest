@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import validation from '../middleware/validation';
+import { requiresAuth } from 'express-openid-connect';
 
 export const routes = Router();
 import foodController from '../controllers/food';
@@ -9,8 +10,8 @@ routes.get(`/`, foodController.getAllFood);
 
 routes.get(`/:id`, foodController.getFood);
 
-routes.post(`/`, validation.foodValidation, foodController.addFood);
+routes.post(`/`, requiresAuth(), validation.foodValidation, foodController.addFood);
 
-routes.put(`/:id`, validation.foodValidation, foodController.updateFood);
+routes.put(`/:id`, requiresAuth(), validation.foodValidation, foodController.updateFood);
 
-routes.delete(`/:id`, foodController.deleteFood);
+routes.delete(`/:id`, requiresAuth(), foodController.deleteFood);

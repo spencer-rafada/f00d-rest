@@ -1,5 +1,7 @@
 import express, { Express, Request, Response, NextFunction } from 'express';
 import { routes } from './routes';
+import { auth } from 'express-openid-connect';
+import authConfig from './config/auth';
 const app: Express = express();
 
 // Middlewares
@@ -11,6 +13,7 @@ app
   .use(cors())
   .use(bodyParser.json())
   .use(bodyParser.urlencoded({ extended: false }))
+  .use(auth(authConfig))
   .use((req: Request, res: Response, next: NextFunction) => {
     res.setHeader(`Access-Control-Allow-Origin`, `*`);
     next();
