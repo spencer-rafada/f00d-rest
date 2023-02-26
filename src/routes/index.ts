@@ -3,13 +3,11 @@ import swaggerUi from 'swagger-ui-express';
 import swaggerDocument from '../swagger.json';
 import { routes as foodRoutes } from './food';
 import { requiresAuth } from 'express-openid-connect';
+import userController from '../controllers/user';
 
 export const routes = Router();
 
-routes.get(`/`, (req: Request, res: Response, next) => {
-  // #swagger.description = `Root endpoint`
-  res.json(req.oidc.isAuthenticated() ? `Hello Food Lover!` : `Join us now!`);
-});
+routes.get(`/`, userController.addUser);
 
 routes.get('/profile', requiresAuth(), (req, res) => {
   res.send(req.oidc.user);

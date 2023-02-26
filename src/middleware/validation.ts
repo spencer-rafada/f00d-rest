@@ -2,6 +2,7 @@ import { check, validationResult } from 'express-validator';
 import mongoose from 'mongoose';
 const ObjectId = mongoose.Types.ObjectId;
 
+// Food Validation
 const foodCategory = [`filipino`, `american`, `mexican`, `african`, `chinese`];
 
 const foodValidation = [
@@ -39,4 +40,9 @@ const checkErrors = (req) => {
   else return null;
 };
 
-export default { foodValidation, validateObjectId, updateFoodValidation, checkErrors };
+export default {
+  foodValidation,
+  validateObjectId,
+  updateFoodValidation,
+  checkErrors
+};
