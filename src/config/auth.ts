@@ -4,7 +4,7 @@ dotenv.config();
 export default {
   authRequired: false,
   auth0Logout: true,
-  baseURL: `http://localhost:3030/`,
+  baseURL: `https://f00d-rest.onrender.com/`,
   clientID: process.env.CLIENT_ID,
   issuerBaseURL: process.env.ISSUER_BASE_URL,
   secret: process.env.SECRET
